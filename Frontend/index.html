@@ -5,38 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Topology of Memory — Rutgers New Brunswick</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Work+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..600,0..100&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
+  <svg id="contours" aria-hidden="true"></svg>
   <div class="brand">
     <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><use href="#daffodil"/></svg>
-    <h1>Topology<br>of Memory</h1>
+    <div>
+      <p class="eyebrow">Rutgers · New Brunswick · est. 1766</p>
+      <h1>Topology <em>of</em> Memory</h1>
+    </div>
   </div>
   <div class="blurb">
-    <h2>An interactive map of memories made at Rutgers.</h2>
-    <p>A collective archive of memories at Rutgers University–New Brunswick and the spaces they are rooted in. Document any personal memory you associate with a place on campus, or visit the memories that have been left here by others.</p>
+    <h2>A field guide to the memories made here.</h2>
+    <p>A collective archive of memories at Rutgers University–New Brunswick and the spaces they are rooted in. Leave a memory on the map, or slide through time to see how the campus itself has changed.</p>
+    <ul class="legend" aria-label="Map legend">
+      <li><i class="k k-stand"></i>Standing building</li>
+      <li><i class="k k-gone"></i>Demolished</li>
+      <li><svg viewBox="0 0 100 100"><use href="#daffodil"/></svg>Memory</li>
+    </ul>
   </div>
   <nav>
-    <button id="locate"><svg viewBox="0 0 40 50"><path d="M20 47C20 47 4 28 4 18a16 16 0 0 1 32 0c0 10-16 29-16 29z"/><ellipse cx="20" cy="18" rx="8" ry="6"/></svg><span>Locate Me</span></button>
-    <button id="inperson"><svg viewBox="0 0 40 50"><use href="#person"/></svg><span>In Person Mode: <b id="ipstate">Off</b></span></button>
+    <div class="tools">
+      <button id="locate"><svg viewBox="0 0 40 50"><path d="M20 47C20 47 4 28 4 18a16 16 0 0 1 32 0c0 10-16 29-16 29z"/><ellipse cx="20" cy="18" rx="8" ry="6"/></svg><span>Locate me</span></button>
+      <button id="inperson"><svg viewBox="0 0 40 50"><use href="#person"/></svg><span>In person: <b id="ipstate">Off</b></span></button>
+    </div>
+    <div class="era">
+      <div class="erahead"><span class="eralabel">Era</span><b id="decadeLabel" class="eranum">2020s</b></div>
+      <input type="range" id="decade" min="1760" max="2020" step="10" value="2020" aria-label="Select a decade">
+      <div class="ticks"><span>1760s</span><span>1890s</span><span>2020s</span></div>
+    </div>
+    <p id="eranote" class="eranote"></p>
   </nav>
 </header>
 
 <main>
   <div id="frame">
     <div id="map"></div>
-    <svg id="outline"><path/></svg>
   </div>
 </main>
 
 <aside id="panel" class="closed">
-  <button id="toggle"><span>Add a new memory!</span><i id="plus">+</i></button>
+  <button id="toggle"><span>Add a new memory</span><i id="plus">+</i></button>
   <form id="form">
-    <label>Title<input name="title" required maxlength="80"></label>
-    <label>Your memory<textarea name="text" rows="4" required></textarea></label>
+    <p class="slip">Field note</p>
+    <label>Title<input name="title" required maxlength="80" placeholder="e.g. First snow on Voorhees Mall"></label>
+    <label>Your memory<textarea name="text" rows="4" required placeholder="What happened here?"></textarea></label>
     <p class="hint" id="hint">Click the map to pin where this memory happened.</p>
     <button type="submit">Plant memory</button>
   </form>
@@ -62,6 +79,7 @@
   </defs>
 </svg>
 
+<aside id="bpanel" hidden><button id="bclose" aria-label="Close">×</button><div id="bbody"></div></aside>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="app.js"></script>
 </body>
