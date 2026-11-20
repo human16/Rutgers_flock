@@ -1,8 +1,8 @@
 // Rutgers–New Brunswick campus center (College Ave)
 const CENTER=[40.5008,-74.4474];
 const map=L.map('map',{zoomControl:true,minZoom:11,maxZoom:18}).setView(CENTER,14);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
-  {attribution:'© OpenStreetMap © CARTO'}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(map);
 map.zoomControl.setPosition('topright');
 
 const daffodil=()=>L.divIcon({className:'dm',html:'<svg viewBox="0 0 100 100"><use href="#daffodil"/></svg>',iconSize:[44,44],iconAnchor:[22,40],popupAnchor:[0,-36]});
