@@ -1,0 +1,43 @@
+:root{--water:#d3ecfd;--ink:#111}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:'Work Sans',sans-serif;color:var(--ink);background:#fff;display:flex;flex-direction:column;min-height:100vh}
+header{display:flex;align-items:flex-start;gap:28px;padding:26px 28px 14px 28px}
+.brand{display:flex;align-items:center;gap:14px;flex:none}
+.logo{width:68px;height:68px}
+h1{font:400 clamp(32px,3.6vw,52px)/1.05 'Lora',serif;letter-spacing:.08em;margin:0}
+.blurb{flex:1;max-width:760px}
+.blurb h2{font:500 clamp(15px,1.4vw,22px) 'Lora',serif;letter-spacing:.14em;margin:6px 0 10px}
+.blurb p{font-style:italic;font-size:clamp(11px,.85vw,14px);line-height:1.35;margin:0}
+nav{margin-left:auto;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+nav button{display:flex;align-items:center;gap:14px;background:none;border:0;cursor:pointer;font:400 clamp(16px,1.5vw,24px) 'Lora',serif;letter-spacing:.12em;color:var(--ink);padding:0}
+nav svg{width:32px;height:38px;fill:none;stroke:#000;stroke-width:2}
+nav button:hover span{text-decoration:underline}
+main{flex:1;padding:0 28px;min-height:420px;display:flex}
+#frame{position:relative;flex:1;min-height:420px}
+#map{position:absolute;inset:0;background:var(--water)}
+#outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:500}
+#outline path{fill:none;stroke:#222;stroke-width:1.2}
+.leaflet-container{background:var(--water);font-family:inherit}
+.leaflet-tile-pane{filter:saturate(1.5) hue-rotate(-8deg) brightness(1.02)}
+.leaflet-control-zoom{border:0!important}
+.leaflet-control-zoom a{border-radius:50%!important;margin-bottom:6px;border:1px solid #222!important;color:#111}
+.dm{background:none;border:0}
+.dm svg{width:44px;height:44px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25));transition:transform .15s;transform-origin:50% 90%}
+.dm:hover svg{transform:scale(1.25)}
+.me{background:none;border:0}
+.me svg{width:34px;height:42px}
+.leaflet-popup-content{font-family:'Work Sans',sans-serif}
+.leaflet-popup-content b{font:500 16px 'Lora',serif;display:block;margin-bottom:4px}
+#panel{position:fixed;right:28px;bottom:0;width:min(33vw,420px);min-width:300px;background:#262626;color:#fff;border-radius:26px 26px 0 0;z-index:1000;transition:transform .3s}
+#panel.closed{transform:translateY(calc(100% - 52px))}
+#toggle{width:100%;height:52px;background:none;border:0;color:#fff;font:400 22px 'Lora',serif;letter-spacing:.12em;cursor:pointer;display:flex;justify-content:center;align-items:center;position:relative}
+#plus{position:absolute;right:26px;font-style:normal;font-size:32px;font-family:sans-serif;transition:transform .3s}
+#panel:not(.closed) #plus{transform:rotate(45deg)}
+#form{background:#fff;color:var(--ink);padding:18px 22px 22px;display:flex;flex-direction:column;gap:12px}
+#form label{display:flex;flex-direction:column;gap:4px;font:400 14px 'Lora',serif;letter-spacing:.08em}
+#form input,#form textarea{font:inherit;font-family:'Work Sans',sans-serif;letter-spacing:0;padding:8px;border:1px solid #999;border-radius:6px}
+.hint{font-size:12px;font-style:italic;margin:0}
+.hint.ok{color:#2a8a2a}
+#form button{background:#262626;color:#fff;border:0;border-radius:20px;padding:10px;font:16px 'Lora',serif;letter-spacing:.1em;cursor:pointer}
+@media(max-width:800px){header{flex-wrap:wrap}nav{margin:0;flex-direction:row;gap:20px}}
